@@ -32,6 +32,7 @@ $app->get('/', function() use($app) {
     return str_repeat('Hello', getenv('TIMES'));
 });
 
+//heroku pg:psql para acceder
 //PDO connection
 $dbopts = parse_url(getenv('DATABASE_URL'));
 $app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
@@ -63,9 +64,10 @@ $app->get('/db/', function() use($app) {
     ));
 });
 
-
-
-
-
+//query
+$app->get('/db/', function() use($app) {
+    $st = $app['pdo']->prepare('INSERT INTO test_table(name) VALUES(\'hola\')');
+    $st->execute();
+});
 
 $app->run();
