@@ -14,21 +14,19 @@
       </ul>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <!-- El tipo de codificación de datos, enctype, DEBE especificarse como sigue -->
-        <form class="form-inline" enctype="multipart/form-data" action="stripHTML.php" method="POST">
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Enviar este fichero:</label>
-            <!-- MAX_FILE_SIZE debe preceder al campo de entrada del fichero -->
-            <!--<input type="hidden" name="MAX_FILE_SIZE" value="30000" />-->
-            <!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
-            <input type="file" name="fichero_usuario" class="form-control-file" id="exampleFormControlFile1">
-            <button type="submit" class="btn btn-primary">Enviar fichero</button>
-          </div>
-        </form>
-      </div>
+  <div class="row">
+    <div class="col-md-8">
+      <!-- El tipo de codificación de datos, enctype, DEBE especificarse como sigue -->
+      <form class="form-inline" enctype="multipart/form-data" action="stripHTML.php" method="POST">
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Enviar este fichero:</label>
+          <!-- MAX_FILE_SIZE debe preceder al campo de entrada del fichero -->
+          <!--<input type="hidden" name="MAX_FILE_SIZE" value="30000" />-->
+          <!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
+          <input type="file" name="fichero_usuario" class="form-control-file" id="exampleFormControlFile1">
+          <button type="submit" class="btn btn-primary">Enviar fichero</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
