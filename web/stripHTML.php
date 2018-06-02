@@ -10,8 +10,13 @@
     $fichero_subido = $dir_subida . basename($_FILES['fichero_usuario']['name']);
 
     echo '<pre>';
-//    echo 'Más información de depuración:';
-//    print_r($_FILES);
+    if (move_uploaded_file($_FILES['fichero_usuario']['tmp_name'], $fichero_subido)) {
+        echo "El fichero es válido y se subió con éxito.\n";
+    } else {
+        echo "¡Posible ataque de subida de ficheros!\n";
+    }
+    echo 'Más información de depuración:';
+    print_r($_FILES);
 
     print "</pre>";
 
@@ -24,7 +29,7 @@
     $echothis = FALSE;
     $istag = FALSE;
     $newsource = '';
-    $newsource .= '<?php /* Pega esto en PHPStorm y apreta CTRL + ALT + SHIFT +L */ ?>' . PHP_EOL . PHP_EOL;
+    $newsource .= '<?php /* Pega esto en PHPStorm y apreta CTRL + ALT + SHIFT + L */ ?>' . PHP_EOL . PHP_EOL;
 
     foreach ($tokens as $token){
         $token_name = is_array($token) ? $token[0] : null;
