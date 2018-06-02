@@ -1,0 +1,1944 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+
+
+<div class="container footer-container notranslate">
+    <?php
+    $storeNames = '';
+    $base_store = Mage::app()->getStore()->getCode();
+    switch ($base_store){
+        case 'uy' :
+            $storeNames = 'Uruguay';
+            break;
+        case 'ar' :
+            $storeNames = 'Argentina';
+            break;
+        case 'mx' :
+            $storeNames = 'Mexico';
+            break;
+        case 'br' :
+            $storeNames = 'Brasil';
+            break;
+        case 'co' :
+            $storeNames = 'Colombia';
+            break;
+        case 'pe' :
+            $storeNames = 'Peru';
+            break;
+        case 'cl' :
+            $storeNames = 'Chile';
+            break;
+
+    }
+    $current_url = Mage::helper('core/url')->getCurrentUrl();
+    $identifier = Mage::getSingleton('cms/page')->getIdentifier();
+    if (strpos($current_url,'checkout/onepage') == false) {
+        ?>
+        <?php
+        if (strpos($current_url,'customer/account') == false) {
+            ?>
+            <h3 class="title-marcas">
+                <span class="txt"><?php echo $this->__('Marcas más buscadas') ?></span>
+            </h3>
+            <div class="footer-marcas">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('slider-marcas-footer')->toHtml(); ?>
+            </div>
+        <?php } ?>
+        <div class="footer">
+            <?php
+            if($identifier == $base_store || $identifier == 'home-2016-'.$base_store){ ?>
+                <div class="footer-testimonios">
+                    <h3><?php echo $this->__('Testimonios de nuestros clientes') ?></h3>
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('testimonios-footer')->toHtml(); ?>
+                </div>
+                <div class="footer-social <?php if($base_store == 'co' || $base_store == 'cl'){echo 'hidden';}?>">
+                    <h3><?php echo $this->__('Síguenos en nuestras redes') ?></h3>
+                    <?php switch($base_store){
+                        case 'ar':
+                            $widget_fb = 'https://www.facebook.com/TiendaMIAcomAR';
+                            $widget_ig = 'https://www.instagram.com/tiendamiacom/';
+                            $widget_tw = 'https://twitter.com/tiendamiacom?ref_src=twsrc%5Etfw';
+                            $widget_yt = 'https://www.youtube.com/channel/UCje2Ylf4fy2C18LKvuIK1WQ';
+                            break;
+                        case 'cl':
+                            $widget_fb = 'https://www.facebook.com/TiendaMIAcomCL';
+                            $widget_ig = 'https://www.instagram.com/tiendamiacom/';
+                            $widget_tw = 'https://twitter.com/tiendamiacom?ref_src=twsrc%5Etfw';
+                            $widget_yt = 'https://www.youtube.com/channel/UCje2Ylf4fy2C18LKvuIK1WQ';
+                            break;
+                        case 'co':
+                            $widget_fb = 'https://www.facebook.com/TiendaMIAcomCO';
+                            $widget_ig = 'https://www.instagram.com/tiendamiacom/';
+                            $widget_tw = 'https://twitter.com/tiendamiacom?ref_src=twsrc%5Etfw';
+                            $widget_yt = 'https://www.youtube.com/channel/UCje2Ylf4fy2C18LKvuIK1WQ';
+                            break;
+                        case 'pe':
+                            $widget_fb = 'https://www.facebook.com/TiendaMIAcomPE';
+                            $widget_ig = 'https://www.instagram.com/tiendamiacom_pe/';
+                            $widget_tw = 'https://twitter.com/TiendaMIAcom_PE?ref_src=twsrc%5Etfw';
+                            $widget_yt = 'https://www.youtube.com/channel/UCje2Ylf4fy2C18LKvuIK1WQ';
+                            break;
+                        case 'uy':
+                            $widget_fb = 'https://www.facebook.com/TiendaMIAcom';
+                            $widget_ig = 'https://www.instagram.com/tiendamiacom/';
+                            $widget_tw = 'https://twitter.com/tiendamiacom?ref_src=twsrc%5Etfw';
+                            $widget_yt = 'https://www.youtube.com/channel/UCje2Ylf4fy2C18LKvuIK1WQ';
+                            break;
+                        case 'br':
+                            $widget_fb = 'https://www.facebook.com/Tiendamiacom-BR-366072953868180/';
+                            $widget_ig = 'https://www.instagram.com/tiendamiacom_br/';
+                            $widget_tw = '';
+                            $widget_yt = '';
+                            break;
+                        default:
+                            $widget_fb = 'https://www.facebook.com/TiendaMIAcom';
+                            $widget_ig = 'https://www.instagram.com/tiendamiacom/';
+                            $widget_yt = 'https://www.youtube.com/channel/UCje2Ylf4fy2C18LKvuIK1WQ';
+                    } ?>
+                    <div class="fb-widget social-widget">
+                        <a href="<?php echo $widget_fb ?>" target="_blank" class="imagen_sprite fb-logo"></a>
+                        <div class="fb-like" data-href="<?php echo $widget_fb ?>" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                    </div>
+                    <div class="ig-widget social-widget">
+                        <a href="<?php echo $widget_ig ?>" target="_blank" class="imagen_sprite ig-logo"></a>
+                        <a class="ig-follow" href="<?php echo $widget_ig ?>" target="_blank"><?php echo $this->__('Seguir') ?></a>
+                    </div>
+                    <div class="tw-widget social-widget <?php if($base_store == 'br'){echo 'hidden';}?>">
+                        <a href="<?php echo $widget_tw ?>" target="_blank" class="imagen_sprite tw-logo"></a>
+                        <a href="<?php echo $widget_tw ?>" class="twitter-follow-button" data-show-screen-name="false" data-lang="es" data-show-count="true">Follow @tiendamiacom</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                    <div class="yt-widget social-widget <?php if($base_store == 'br'){echo 'hidden';}?>">
+                        <a href="<?php echo $widget_yt ?>" target="_blank" class="imagen_sprite yt-logo"></a>
+                        <a class="yt-follow" href="<?php echo $widget_yt ?>" target="_blank">Ver canal</a>
+                    </div>
+                </div>
+            <?php } ?>
+            <div class="footer-news">
+                <h3 class="title-news"><?php echo $this->__('¡Reg&iacute;strate a nuestro Newsletter!') ?><!-- <strong>GANA U$S 5!</strong> --></h3>
+                <!-- <p>Para tu primera compra<span>*Válido para los primeros 30 días</span></p> -->
+                <?php echo $this->getChildHtml('newsletter'); ?>
+            </div>
+            <div class="footer-cols-wrapper footer-categorias">
+                <h4><?php echo $this->__('M&aacute;s Categor&iacute;as') ?></h4>
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mas-categorias-footer')->toHtml(); ?>
+            </div>
+            <div class="footer-cols-wrapper">
+                <div class="footer-col footer-col-1">
+                    <h4><?php echo $this->__('Informaci&oacute;n &uacute;til') ?></h4>
+                    <?php echo $this->getChildHtml('cms_footer_links') ?> <?php echo $this->getChildHtml('footer_links') ?>
+                    <a class="franquicias solo_uy" title="Chequear Franquicias"  href="https://servicios.aduanas.gub.uy/LuciapubX/hwcantencpostales.aspx" target="_blank">¿Cuantas franquicias he utilizado?</a>
+                </div>
+                <ul class="footer-col footer-col-2 sobre-tiendamia">
+                    <h4><?php echo $this->__('Todo en un solo lugar') ?></h4>
+                    <li><?php echo $this->__('Env&iacute;o Asegurado') ?></li>
+                    <li><?php echo $this->__('Garant&iacute;a de Entrega') ?></li>
+                    <li><?php echo $this->__('Productos Originales') ?></li>
+                    <li><?php echo $this->__('El mejor Precio') ?></li>
+                    <li><?php echo $this->__('Compra f&aacute;cil, r&aacute;pido y seguro') ?></li>
+                </ul>
+                <div class="footer-col footer-col-3 footer-col-content">
+                    <h4><?php echo $this->__('Compra con tranquilidad') ?></h4>
+                    <p class="solo_uy">Comprando en TiendaMIA estar&aacute;s comprando excento de impuestos y directo en Estados Unidos bajo el Decreto 356/014.</p>
+                    <p><?php echo $this->__('TiendaMIA cuenta con los certificados verificados para garantizar la seguridad de la compra.') ?></p>
+                </div>
+                <ul class="footer-col footer-col-4 contacto">
+                    <h4 class="contacto_title"><?php echo $this->__('Contacto') ?></h4>
+                    <li class="tel solo_uru notranslate">UY.: <span>(+598) 2908 2289</span></li>
+                    <li class="tel solo_co notranslate">Tel. Principal: <span>+(571) 382 48 94</span></li>
+                    <li class="tel solo_cl notranslate">Tel. Principal: <span>+(56) 2 3210 9560</span></li>
+                    <li class="tel solo_mx notranslate">US.: <span>+52 (55) 85262047</span></li>
+                    <li class="tel solo_pe notranslate">Tel. Principal: <span>+511 641 9422</span></li>
+                    <li class="tel solo_ar notranslate">Tel. Principal: <span>+(54) 11 5274 2462</span></li>
+                    <li class="tel solo_br notranslate">Tel. Principal: <span>+55 (11) 49338533</span></li>
+                    <li class="horario notranslate"><?php echo $this->__('Lunes a Viernes de 9 a 17hs') ?></li>
+                    <li class="notranslate">Hora de Miami, Florida, EE.UU. (GMT-4)</li>
+                    <li class="envia"><a href="https://tiendamia.zendesk.com/hc/es" target="_blank"><?php echo $this->__('Preguntas Frecuentes / Contacto') ?></a></li>
+                    <li class="envia"><a href="<?php echo $this->getUrl('') ?>trabaja-con-nosotros" target="_blank"><?php echo $this->__('Trabaja con nosotros') ?></a></li>
+                    <li class="envia"><a href="/skin/frontend/traigo/traigo/pdf/IP_notifications_FORM_V2.1.pdf" target="_blank"><?php echo $this->__('Propiedad Intelectual') ?></a></li>
+                    <li class="envia"><a href="/skin/frontend/traigo/traigo/pdf/Politica de Calidad - TM.pdf" target="_blank"><?php echo $this->__('Pol&iacute;tica de Calidad') ?></a></li>
+                </ul>
+                <!-- <div class="header-traductor" id="google_translate_element"></div> -->
+            </div>
+            <div class="footer-metodos-pago">
+                <h5><?php echo $this->__('Métodos de Pago') ?></h5>
+                <?php
+                if ($base_store != 'xxxx'){ ?>
+                    <div class="imagen_sprite visa_home"></div>
+                    <div class="imagen_sprite master_home"></div>
+                    <div class="imagen_sprite amex_home"></div>
+                    <div class="imagen_sprite diners_home"></div>
+                    <?php $paypal_logo = Mage::getBlockSingleton('paypal/logo'); ?>
+                    <a href="#" title="PayPal" onclick="javascript:window.open('<?php echo $paypal_logo->getAboutPaypalPageUrl() ?>','paypal','width=600,height=350,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;">
+                        <div class="imagen_sprite paypal_home"></div>
+                    </a>
+                <?php } ?>
+                <?php if ($base_store == 'uy'){ ?>
+                    <div class="imagen_sprite prex_abitab_home"></div>
+                <?php } elseif ($base_store == 'ar'){ ?>
+                    <div class="imagen_sprite cabal_home"></div>
+                    <div class="imagen_sprite naranja_home"></div>
+                    <div class="imagen_sprite agent_home"></div>
+                    <div class="imagen_sprite link_home"></div>
+                    <div class="imagen_sprite nubi_home"></div>
+                <?php } elseif ($base_store == 'cl'){ ?>
+                    <div class="imagen_sprite presto_home"></div>
+                    <div class="imagen_sprite cmr_home"></div>
+                    <div class="imagen_sprite magna_home"></div>
+                <?php } elseif ($base_store == 'co'){ ?>
+                    <img src="<?php echo $this->getSkinUrl('images/colombia/pse.png'); ?>" />
+                <?php } elseif ($base_store == 'mx'){ ?>
+                    <!--          <img src="--><?php //echo $this->getSkinUrl('images/mexico/banamex.png'); ?><!--" />-->
+                    <!--          <img src="--><?php //echo $this->getSkinUrl('images/mexico/bancomer.png'); ?><!--" />-->
+                    <!--          <img src="--><?php //echo $this->getSkinUrl('images/mexico/oxxo.png'); ?><!--" />-->
+                    <!--          <img src="--><?php //echo $this->getSkinUrl('images/mexico/santander.png'); ?><!--" />-->
+                <?php } elseif ($base_store == 'pe'){ ?>
+                    <!-- <img src="<?php //echo $this->getSkinUrl('images/peru/pagoefectivo.png'); ?>" /> -->
+                <?php } ?>
+                <a class="certificados" name="trustlink" href="http://secure.trust-guard.com/security/11094" rel="nofollow" target="_blank" onclick="var nonwin=navigator.appName!='Microsoft Internet Explorer'?'yes':'no'; window.open(this.href.replace(/https?/, 'https'),'welcome','location='+nonwin+',scrollbars=yes,width=517,height='+screen.availHeight+',menubar=no,toolbar=no'); return false;" oncontextmenu="var d = new Date(); alert('Copying Prohibited by Law - This image and all included logos are copyrighted by trust-guard \251 '+d.getFullYear()+'.'); return false;"><img name="trustseal" alt="Security Seals" style="border: 0;" src="https://members.trust-guard.com/seals/logo/11093-lg.gif" /></a>
+                <h5 class="certificados"><?php echo $this->__('Certificados') ?></h5>
+                <span class="imagen_sprite ecommerce_award_logo"></span>
+                <h5 class="certificados"><?php echo $this->__('Premios') ?></h5>
+            </div>
+            <div class="footer-internacional">
+                <!--        <h5>TiendaMIA Internacional</h5>-->
+                <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('bandera-footer')->toHtml(); ?>
+                <h5 class="certificados"><?php echo $this->__('Developed by:') ?><span class="imagen_sprite xipron_logo"></span></h5>
+            </div>
+            <p class="copy"><?php echo $this->__('© 2014'); ?> - <?php echo date('Y'); ?> - <?php echo $this->__('TiendaMIA.com - Todos los derechos reservados - Todas las marcas son propiedad de sus respectivos dueños'); ?></p>
+        </div>
+    <?php } else { ?>
+        <p class="copy"><?php echo $this->__('© 2014'); ?> - <?php echo date('Y'); ?> - <?php echo $this->__('TiendaMIA.com - Todos los derechos reservados - Todas las marcas son propiedad de sus respectivos dueños'); ?></p>
+    <?php } ?>
+</div>
+
+<?php if(Mage::getStoreConfig('general/tiendamiapromos/enabled_paypal') == 'xxxx'){ ?>
+    <div class="banner-promo-paypal" style="display:none;">
+  <span class="content">
+      <span class="close-btn" onclick="closeBannerPaypal();"></span>
+      <img class="not-mobile" alt="Comprando con PayPal te regalamos U$S 10" src="/skin/frontend/traigo/traigo/images/banner-cupon-paypal_3.jpg">
+      <img class="yes-mobile" alt="Comprando con PayPal te regalamos U$S 10" src="/skin/frontend/traigo/traigo/images/banner-cupon-paypal_3_mobile.jpg">
+  </span>
+    </div>
+<?php } ?>
+
+
+<?php
+// POPOVERS CON MENSAJES EN CARRITO
+if(strpos($current_url,'checkout/cart') !== false){ ?>
+    <div class="msg-box-popover" id="msg-box-solicitar-master" style="display:none;">
+        <span class="close-btn" onclick="hidePopoverMaster();"></span>
+        <?php if($base_store == 'br') { ?>
+            <h3 class="msg-box-title">Geralmente até 50 dólares a alfândega brasileira não cobra impostos.</h3>
+        <?php } else { ?>
+            <h3 class="msg-box-title">&iquest;No tienes Tarjeta Internacional?</h3>
+            <div class="msg-box-content">
+                <p><a href="<?php echo $this->getUrl('') ?>solicitar-tarjeta-prepaga-gratis" target="_blank">Puedes solicitar Aqu&iacute; Gratis <br> tu Tarjeta Prepaga <img src="/skin/frontend/traigo/traigo/images/master.png"></a></p>
+            </div>
+        <?php } ?>
+    </div>
+
+    <div class="msg-box-popover" id="msg-box-aprovecha-envio" style="display:none;">
+        <span class="close-btn" onclick="hidePopoverEnvio();"></span>
+        <h3 class="msg-box-title">
+            <?php if ($base_store == 'uy' || $base_store == 'ar'){ ?>
+                Pagá menos agregando más productos al carrito.
+            <?php } else { ?>
+                <?php echo $this->__('Paga menos agregando más productos al carrito.') ?>
+            <?php } ?>
+        </h3>
+        <div class="msg-box-content">
+            <p>
+                <?php if ($base_store == 'uy' || $base_store == 'ar'){ ?>
+                    Descontá 30% a partir del 3er kilo.
+                <?php } else { ?>
+                    <?php echo $this->__('Descuenta 30% a partir del 3er kilo.') ?>
+                <?php } ?>
+            </p>
+        </div>
+    </div>
+
+    <?php if ($base_store == 'ar'){ ?>
+        <div class="msg-box-popover" id="msg-box-alerta-4items" style="display:none;">
+            <span class="close-btn" onclick="hidePopover3items();"></span>
+            <h3 class="msg-box-title">
+                Importante:
+            </h3>
+            <div class="msg-box-content">
+                <p>
+                    Ten en cuenta que según la normativa aduanera de tu país, no se puede ingresar más de 3 productos de la misma familia.
+                    <a style="color: #0066c0;" href="https://tiendamia.zendesk.com/hc/es/articles/115001312726-Limitaciones-de-la-Aduana-Argentina" target="_blank">Consulta más aquí</a>
+                </p>
+            </div>
+        </div>
+    <?php } ?>
+
+<?php } ?>
+
+
+
+<div class="hidden taxclass notranslate">
+    <?php //$TaxRateCollection = Mage::getResourceModel('tax/calculation_rate_collection');
+    //$TaxRateCollection->addFieldToFilter('tax_country_id', 'ar');
+    //$TaxRate_json = $TaxRateCollection->toArray();
+    //echo json_encode($TaxRate_json);
+    ?>
+</div>
+<?php
+if (!isset($_COOKIE["hidePopoverMid"])) {
+    $limitante = Mage::getStoreConfig('carriers/customship/kilomitad_limit');
+    $kilo_50off = Mage::getStoreConfig('carriers/customship/kilomitad');
+    if ($kilo_50off) {
+        $custom_total = Mage::helper('loadhelper')->getCartCustomSubTotal();
+        $faltan = $limitante - $custom_total;
+        if ($faltan > 0) {
+            ?>
+            <script type="text/javascript">
+                $j(function () {
+                    <?php if(Mage::helper('loadhelper')->tieneOrdenes() == 0 || Mage::getSingleton('customer/session')->isLoggedIn() == 0){ ?>
+                    setTimeout(function () {
+                        $j('#msg-box-aprovecha-midprice').slideToggle();
+                    }, 2000);
+                    <?php } ?>
+
+
+                });
+
+                function hidePopoverMid() {
+                    $j('#msg-box-aprovecha-midprice').fadeOut();
+                    var hidePopoverMid = 'hidePopoverMid';
+                    var myDatePopover = new Date();
+                    myDatePopover.setTime(myDatePopover.getTime() + (24 * 60 * 60 * 1000));
+                    document.cookie = hidePopoverMid + "=" + hidePopoverMid + ";expires=" + myDatePopover + "; path=/";
+                }
+            </script>
+
+            <div class="msg-box-popover" id="msg-box-aprovecha-midprice" style="display:none; ">
+                <span class="close-btn" onclick="hidePopoverMid();"></span>
+                <h3 class="msg-box-title" style="background:#381B83; color:#fff"><strong>En tu primera
+                        compra</strong></h3>
+                <div class="msg-box-content">
+                    <p><strong style="color:#381B83; font-weight: normal">Te faltan U$S <?php echo $faltan ?> para
+                            obtener 50% de DTO. en tu envío
+                            a <?php echo Mage::getStoreConfig('carriers/customship/country_name') ?>.</strong></p>
+                </div>
+            </div>
+            <style>
+                #msg-box-solicitar-master {
+                    bottom: 130px;
+                }
+            </style>
+            <?php
+        }
+    }
+}?>
+
+<div class="msg-box-popover" id="msg-box-splitorder" style="display:none;">
+    <span class="close-btn" onclick="hideSplitorder();"></span>
+    <h3 class="msg-box-title"><strong>Importante:</strong></h3>
+    <div class="msg-box-content">
+        <p>Su orden supera los U$S 200, solo puede pagar utilizando MasterCard, American Express o PrexCard.</p>
+        <p>Si desea pagar con visa su orden no debe superar los U$S 200.</p>
+    </div>
+</div>
+
+
+
+
+<p id="back-top"><a href="#top"><span></span></a> </p>
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="youtube_home" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+    <div class="modal-body"> </div>
+</div>
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="form_aduanas" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+    <div class="modal-body"> </div>
+</div>
+
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8" id="alerta_blackfriday" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+  <div class="modal-body">
+    <div style=" text-align:center; font-size:20px; margin:50px; line-height:25px;">Las ofertas y promociones (por ejemplo: Black Friday, Cyber Monday, productos limitados, liquidaci&oacute;n de temporada, etc) que aparecen en Amazon, no siempre se aplican a este sistema de compras, pudiendo cancelarse la compra. Por ofertas y descuentos especiales navega nuestro cat&aacute;logo y estate atento a nuestra Newsletter. </div>
+    <div style=" text-align:center; margin:10px;"><a style="font-family:'Open Sans',sans-serif;background:#90ae28;text-transform:uppercase;text-decoration:none;font-weight:bold;color:#ffffff;padding:12px 25px;border-radius:4px;font-size:19px" href="#" class="black_entiendo">Entendido</a> </div>
+  </div>
+</div>
+-->
+<?php
+$current_url = Mage::helper('core/url')->getCurrentUrl();
+if((strpos($current_url,'producto') == true || strpos($current_url,'product') == true) &&  strpos($current_url,'politicas-de-devolucion-de-productos') != true) {
+    ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="tabla_carters"
+         style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <div class="modal-body"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('tabla_carters')->toHtml(); ?> </div>
+    </div>
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="tabla_oshkosh"
+         style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <div class="modal-body"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('tabla_oshkosh')->toHtml(); ?> </div>
+    </div>
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="new-size-chart" style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <div class="modal-body">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('new-size-chart')->toHtml(); ?>
+        </div>
+    </div>
+    <?php
+}
+if (strpos($current_url,'checkout/onepage') == false) {
+    ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp5 notranslate" id="register_header" style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <div class="modal-body">
+
+
+            <div class="content-login_header">
+                <div class="login_header_title">
+                    <!-- <span class="siteseal" id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=4UQN2VXfavZQLXA0SccYhNGKEWL3bIE5AI6G31hIaWh3oEklffo5Da"></script></span> -->
+                    <h3>REGISTRO</h3>
+                </div>
+                <div class="clear20px"></div>
+                <div class="login_header_right">
+                    <form id="form-validate">
+                        <div class="fieldset">
+                            <ul class="form-list">
+                                <li class="fields">
+
+                                    <div class="customer-name">
+                                        <div class="field name-firstname">
+                                            <label class="required" for="firstname"><?php echo $this->__('Nombre'); ?>:</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text required-entry" maxlength="255" title="Nombre" value="" name="firstname" id="firstname" autocomplete="off">
+                                            </div>
+                                            <div class="clear"></div>
+                                            <p class="error_msg" id="firstname"><?php echo $this->__('Nombre Requerido'); ?></p>
+
+                                        </div>
+                                        <div class="field name-lastname">
+                                            <label class="required" for="lastname"><?php echo $this->__('Apellido') ?>:</label>
+                                            <div class="input-box">
+                                                <input type="text" class="input-text required-entry" maxlength="255" title="Apellido" value="" name="lastname" id="lastname" autocomplete="off">
+                                            </div>
+                                            <div class="clear"></div>
+                                            <p class="error_msg" id="lastname"><?php echo $this->__('Apellido Requerido'); ?></p>
+
+                                        </div>
+                                        <div class="field"><label for="gender" class="gender"><?php echo $this->__('Sexo') ?></label>
+                                            <div class="input-box">
+                                                <select title="Sexo" name="gender" id="gender">
+                                                    <option selected="selected" value=""><?php echo $this->__('Elija su Sexo') ?></option>
+                                                    <option value="1"><?php echo $this->__('Hombre') ?></option>
+                                                    <option value="2"><?php echo $this->__('Mujer') ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li class="control">
+                                    <div class="input-box">
+                                        <label class="info_cuenta"><?php echo $this->__('Informaci&oacute;n de Acceso a tu Cuenta') ?></label>
+                                    </div>
+                                    <div class="input-box">
+                                        <input type="checkbox" class="checkbox" checked="checked" id="is_subscribed" value="1" title="Quiero recbir ofertas en mi E-mail" name="is_subscribed">
+                                        <label for="is_subscribed" class="is_subscribed"><?php echo $this->__('Recibir Ofertas!') ?></label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fieldset">
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <div class="field">
+                                        <label class="required" for="email_address"><?php echo $this->__('E-mail') ?>:</label>
+                                        <div class="input-box">
+                                            <input type="text" class="input-text validate-email required-entry" title="E-mail" value="" id="email_address" name="email" autocomplete="off">
+                                        </div>
+                                        <div class="clear"></div>
+                                        <p class="error_msg" id="email_address"><?php echo $this->__('E-mail Requerido'); ?></p>
+                                        <p class="error_msg" id="email_address_incorrecto"><?php echo $this->__('E-mail incorrecto'); ?></p>
+
+                                    </div>
+                                    <div class="field">
+                                        <label class="required confirmemail" for="email_address_confirm"><?php echo $this->__('Confirmar  E-mail') ?>:</label>
+                                        <div class="input-box">
+                                            <input type="text" class="input-text required-entry" title="Confirmar E-mail" value="" id="email_address_confirm" name="email" autocomplete="off">
+                                        </div>
+                                        <div class="clear"></div>
+                                        <p class="error_msg" id="email_address_confirm"><?php echo $this->__('E-mail Requerido'); ?></p>
+                                        <p class="error_msg" id="email_address_nocoincide"><?php echo $this->__('Los E-mails no coinciden'); ?></p>
+
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="field">
+                                        <label class="required" for="password"><?php echo $this->__('Contrase&ntilde;a') ?>:</label>
+                                        <div class="input-box">
+                                            <input type="password" class="input-text required-entry" title="Contraseña" id="password" name="password" autocomplete="off" maxlength="16">
+                                        </div>
+                                        <div class="clear"></div>
+                                        <p class="error_msg" id="password"><?php echo $this->__('Minimo 6 Caracteres'); ?></p>
+                                    </div>
+                                    <div class="field">
+                                        <label class="required confirmarpassword" for="confirmation"><?php echo $this->__('Confirmar Contrase&ntilde;a') ?>:</label>
+                                        <div class="input-box">
+                                            <input type="password" class="input-text required-entry" id="confirmation" title="Confirmar Contrase&ntilde;a" name="confirmation" autocomplete="off" maxlength="16">
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="clear"></div>
+                                        <p class="error_msg" id="password"><?php echo $this->__('Las Contrase&ntilde;as no coinciden'); ?></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="buttons-set">
+                            <button id="send3" class="button" title="Enviar" type="button" onclick="validarregistro_ajax()"><span><span><?php echo $this->__('Registrarme') ?></span></span></button>
+                            <span class="cargando_login" style="display:none;"><img src="/skin/frontend/traigo/traigo/images/cargando_new.gif" alt="cargando"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-login_header"><span class="nuevo_login"><span><?php echo $this->__('¿Ya tienes una Cuenta?') ?></span> <a href="#" onclick="clickregister()"><?php echo $this->__('¡Inicia sesi&oacute;n aqu&iacute;!') ?></a> / <a href="https://tiendamia.zendesk.com/hc/es" target="_blank"><?php echo $this->__('¿Ayuda?') ?></a></span> </div>
+        </div>
+    </div>
+<?php } ?>
+
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="password_header" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+    <div class="modal-body">
+        <div class="content-login_header">
+            <div class="login_header_title">
+                <h3><?php echo $this->__('RECUPERAR MI CONTRASE&Ntilde;A'); ?></h3>
+                <p><?php echo $this->__('Por favor, ingresa tu email abajo y reibirás un link para restablecer tu contraseña.'); ?></p>
+            </div>
+            <form id="form-validate" method="post" action="#">
+                <div class="fieldset-recuperar">
+                    <ul class="form-list">
+                        <li>
+                            <label class="required" for="email_address">E-mail:</label>
+                            <div class="input-box">
+                                <input type="text" value="" class="input-text required-entry changePassword" id="email_address" alt="email" name="email">
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="error_msg"><?php echo $this->__('E-mail incorrecto'); ?></p>
+                </div>
+                <div class="buttons-set-recuperar">
+                    <button class="button" title="Enviar" type="button" onclick="changePassword()"><span><span>Enviar</span></span></button>
+                </div>
+                <script type="text/javascript">
+                    function changePassword(){
+                        var user_email = $j('input.changePassword').val();
+                        //alert()
+                        setPassword(user_email)
+                    }
+                </script>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php $loggedin =  $this->helper('customer')->isLoggedIn();
+
+if ($loggedin == 1){
+
+    $user_email = Mage::getSingleton('customer/session')->getCustomer()->getEmail();
+    $tiendamia_email = '@tiendamiaconnect.com';
+    $user_email_check = strpos($user_email, $tiendamia_email);
+    if ($user_email_check !== false){ ?>
+
+
+
+
+
+        <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="confirmar_email_header" style="display: none;">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+            <div class="modal-body">
+                <div class="content-login_header">
+                    <div class="login_header_title">
+                        <h3><?php echo $this->__('Confirmar su e-mail'); ?></h3>
+                        <p><?php echo $this->__('Por favor, ingresa tu email abajo para confirmar tu cuenta y poder realizar compras en tiendaMIA.'); ?></p>
+                    </div>
+                    <form id="cambiar_mail" method="get" action="#">
+                        <div class="fieldset-recuperar">
+                            <ul class="form-list">
+                                <li>
+                                    <label class="required" for="email_address">E-mail:</label>
+                                    <div class="input-box">
+                                        <input type="text" value="" class="input-text required-entry" id="cambiar_email" alt="email" name="cambiar_email">
+                                    </div>
+                                </li>
+                            </ul>
+                            <p class="error_msg"><?php echo $this->__('E-mail incorrecto'); ?></p>
+                        </div>
+                        <div class="buttons-set-recuperar">
+                            <button class="button" title="Enviar" type="button" onclick="cambiar_mail()"><span><span>Enviar</span></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        if(isset($_GET['cambiar_email']))
+        {
+
+            $nuevo_email = $_GET['cambiar_email'];
+            $current_url = $this->helper('core/url')->getCurrentUrl();
+            $current_url_explode_1 = explode('?',$current_url);
+            $current_url_explode_aux = explode('&',$current_url_explode_1[1]);
+            foreach ($current_url_explode_aux as $key => $current_url_explode_2){
+                if (strpos($current_url_explode_2, "cambiar_email") !== false)
+                    unset($current_url_explode_aux[$key]);
+            }
+            $current_url = $current_url_explode_1[0];
+            if($current_url_explode_aux)
+                $current_url .=  "?" . implode('&',$current_url_explode_aux);
+
+            $user_email = Mage::getSingleton('customer/session')->getCustomer()->getEmail();
+            $user_fname = Mage::getSingleton('customer/session')->getCustomer()->getFirstname();
+            $user_lname = Mage::getSingleton('customer/session')->getCustomer()->getLastname();
+            $user_group = Mage::getSingleton('customer/session')->getCustomerGroupId();
+            $customer = Mage::getModel('customer/customer');
+            $customer->setWebsiteId(Mage::app()->getWebsite()->getId());
+            $customer->loadByEmail($user_email);
+            $customer->setEmail($nuevo_email);
+            $customer->setFirstname($user_fname);
+            $customer->setLastname($user_lname);
+            $customer->setGroupId($user_group);
+            try{
+                $customer->save();
+            }
+            catch (Exception $e) {
+                Zend_Debug::dump($e->getMessage());
+            }
+            Mage::getModel('newsletter/subscriber')->subscribe($nuevo_email);
+            header('Location: '. $current_url);
+            //echo
+        }
+
+        ?>
+
+        <script type="text/javascript">
+
+            function cambiar_mail(){
+
+                var nuevo_mail = $j('#confirmar_email_header #cambiar_email').val()
+                var emailRegex = new RegExp(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i);
+                var validemail = emailRegex.test(nuevo_mail);
+
+                if (!validemail && nuevo_mail !=='' ){
+                    $j('#confirmar_email_header .error_msg').val()
+                } else {
+                    $j('#confirmar_email_header #cambiar_mail').submit();
+                }
+
+            }
+
+        </script>
+
+
+    <?php } }
+?>
+
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8" id="preguntas_frecuentes" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+  <div class="modal-body">
+    <div class="content-login_header">
+      <div class="login_header_title">
+        <h2><?php // echo $this->__('PREGUNTAS FRECUENTES'); ?></h2>
+      </div>
+    </div>
+      <div class="preguntas_frecuentes_body">
+      <?php // echo $this->getLayout()->createBlock('cms/block')->setBlockId('preguntas_frecuentes')->toHtml(); ?>
+    </div>
+  </div>
+</div>
+-->
+
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8" id="terminos_condiciones" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+  <div class="modal-body">
+    <div class="content-login_header">
+      <div class="login_header_title">
+        <h2><?php // echo $this->__('T&eacute;rminos y Condiciones'); ?></h2>
+      </div>
+    </div>
+      <div class="preguntas_frecuentes_body">
+
+      <?php // echo $this->getLayout()->createBlock('cms/block')->setBlockId('terminos_condiciones')->toHtml(); ?>
+    </div>
+  </div>
+</div>
+-->
+
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="que_es_tiendamia" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+    <div class="modal-body">
+        <div class="content-login_header">
+            <div class="login_header_title">
+                <h3><?php echo $this->__('¿Qué es TiendaMIA?'); ?></h3>
+            </div>
+        </div>
+        <div class="preguntas_frecuentes_body">
+
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('que_es_tiendamia')->toHtml(); ?>
+
+        </div>
+    </div>
+</div>
+
+<?php if (strpos($current_url,'checkout/onepage') == false && (strpos($current_url,'customer/account') == false)) { ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="info_metodos_de_pago" style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <div class="modal-body">
+            <img src="https://tiendamia.com/skin/frontend/traigo/traigo/images/pago-cuotas-abril-<?php echo $base_store ?>-min.png" style="max-width: 100%;"/>
+        </div>
+        <p data-dismiss="modal" style="margin: 0 auto 20px;color: #0066c0;font-size: 14px;text-align: center;cursor: pointer;width: 200px;">Aceptar</p>
+    </div>
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="promo_master_10off" style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <div class="modal-body">
+            <img src="https://tiendamia.com/newsletter/materiales/uruguay/bases-modal-master-marzo-min.png" style="max-width: 100%;"/>
+        </div>
+        <p data-dismiss="modal" style="margin: 0 auto 20px;color: #0078c2;font-size: 14px;text-align: center;cursor: pointer;width: 200px;">Aceptar</p>
+    </div>
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="como_comprar" style="display: none;">
+        <div class="content-login_header">
+            <div class="login_header_title">
+                <h3><?php echo $this->__('¿C&oacute;mo comprar en TiendaMIA?') ?></h3>
+            </div>
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        </div>
+
+        <div class="modal-body">
+            <div class="preguntas_frecuentes_body">
+                <div id="slider_como_comprar" class="img_cont">
+                    <ul>
+
+                    </ul>
+                </div>
+                <span class="slider-prev"><span></span></span>
+                <span class="slider-next"><span></span></span>
+            </div>
+            <div class="clear"></div>
+            <div class="content_como_comprar preguntas_frecuentes_body">
+                <h3><?php echo $this->__('Mas información') ?></h3>
+                <?php if ($base_store == 'br') { ?>
+                    <p><span class="line_number">1</span> <?= 'A TiendaMIA é a melhor maneira de comprar nos EUA e receber no Brasil, pagando apenas <strong>5,99 USD pelo frete internacional.</strong>' ?></p>
+                    <p><span class="line_number">2</span> <?= 'A fatura que acompanha o pacote é composta pelo custo dos produtos e frete internacional.' ?></p>
+                    <p><span class="line_number">3</span> <?= 'Enviando pelo o USPS e gastando menos de US $ 44 em produtos, a alfândega brasileira normalmente não cobra impostos.' ?></p>
+                    <p><span class="line_number">4</span> <?= 'Encontre mais de 1 bilhao de <strong>produtos da Amazon, eBay e Walmart.</strong>' ?></p>
+                    <p><span class="line_number">5</span> <?= 'Na TiendaMIA existem duas opções para envio. <strong>Frete com USPS Priority sem impostos Pré-Pagos</strong> ou envio com Courier Privado com Impostos Pré-Pagos (109% Flat).' ?></p>
+                    <p><span class="line_number">7</span> <?= 'Os livros nao têm impostos.' ?></p>
+                    <p><span class="line_number">8</span> <?= 'Receba seu pedido na sua casa ou no seu escritório.' ?></p>
+                <?php } else if ($base_store == 'pe') { ?>
+                    <p><span class="line_number">1</span> <?= 'Con DNI puedes realizar hasta 3 compras anuales y la suma de los productos de dichas 3 compras no debe superar los 2.000 USD.' ?></p>
+                    <p><span class="line_number">2</span> <?= 'Con RUC, no hay límite en la cantidad de compras que puedes realizar. Si no tienes RUC, lo puedes gestionar en SUNAT.' ?></p>
+                    <p><span class="line_number">3</span> <?= 'Las órdenes que tengan hasta 200 USD en productos, no llevan impuestos.' ?></p>
+                    <p><span class="line_number">4</span> <?= 'Las órdenes mayores de 200 USD en productos, tienen  un costo de 27% en concepto de Impuestos y Gestión Aduanera.' ?></p>
+                    <p><span class="line_number">5</span> <?= 'Para ver el precio final de tu orden, agrega los productos al carrito y fíjate en él todo el detalle.' ?></p>
+                    <p><span class="line_number">6</span> <?= 'Dependiendo del lugar donde vives, puedes tener un costo de hasta 5.99 USD en el envío.' ?></p>
+                    <p><span class="line_number">7</span> <?= 'A partir del 3er Kilo, TiendaMIA ofrece un 30% de descuento en el costo del envio.' ?></p>
+                    <p><span class="line_number">8</span> <?= 'Puedes pagar en Soles o Dólares, con Tarjeta de Crédito en Cuotas, con PayPal o con Pago Efectivo.' ?></p>
+                    <p><span class="line_number">9</span> <?= 'La mayoría de las órdenes demoran entre 10 y 15 días hábiles. Algunas órdenes pueden demorar hasta 25 días hábiles.' ?></p>
+                    <p><span class="line_number last">10</span> <?= 'Encuentra más de 1000 Millones de Productos de Amazon, eBay y Walmart.' ?></p>
+                <?php } else if ($base_store == 'ar') { ?>
+                    <p><span class="line_number ">1</span> <?= 'TiendaMIA es el mejor lugar para comprar todo lo que no hay en tu país.' ?></p>
+                    <p><span class="line_number ">2</span> <?= 'Podés realizar 5 compras anuales de hasta 1000 USD en productos cada una.' ?></p>
+                    <p><span class="line_number ">3</span> <?= 'Las órdenes viajan por correo privado directo a tu domicilio.' ?></p>
+                    <p><span class="line_number ">4</span> <?= 'Podés pagar en pesos argentinos o en dólares, con tarjetas de crédito internacionales o locales y con tarjetas de débito.' ?></p>
+                    <p><span class="line_number ">5</span> <?= 'Podés pagar entre 3 y 12 cuotas, dependiendo del banco emisor de la tarjeta. <a style="display:inline;" href="https://tiendamia.zendesk.com/hc/es/articles/115002986092-Pagos-en-cuotas">Conocé acá los planes</a>.' ?></p>
+                    <p><span class="line_number ">6</span> <?= 'TiendaMIA.com se ocupa de todos los tramites de Aduana.' ?></p>
+                    <p><span class="line_number ">7</span> <?= 'TiendaMIA.com se encarga de pagar todos los impuestos correspondientes.' ?></p>
+                    <p><span class="line_number ">8</span> <?= 'Los precios no incluyen el envío y los impuestos. Para ver el precio final de tu orden, agrega los productos al carrito. ' ?></p>
+                    <p><span class="line_number ">9</span> <?= 'Una vez que recibas en el paquete, tenés que declarar la recepción del mismo en la web de AFIP. Es un paso muy sencillo que requiere de Clave Fiscal 3.' ?></p>
+                    <p><span class="line_number last">10</span> <?= 'Si no tenés Clave Fiscal 3, la podés obtener en minutos en cualquier dependencia de AFIP.' ?></p>
+                    <p><span class="line_number last">11</span> <?= 'Hay productos que tienen impuestos bajos, como notebooks, tablets, Kindles y más. <a style="display:inline;" href="https://tiendamia.com/ar/impuestos-bajos">Conocé más aquí</a>.' ?></p>
+                    <p><span class="line_number last">12</span> <?= 'Los libros no conllevan ningún impuesto y no consumen envíos.' ?></p>
+                    <p><span class="line_number last">13</span> <?= 'Por cada envío, no podés comprar más de 3 artículos de la misma familia de productos.' ?></p>
+                <?php } else if ($base_store == 'uy') {?>
+                    <p><span class="line_number">1</span> <?= 'TiendaMIA es la forma más fácil de comprar en USA.' ?></p>
+                    <p><span class="line_number">2</span> <?= 'Disponés de 3 envíos sin pagar impuestos cada año. En cada envío podés gastar hasta USD 200 en productos. ' ?></p>
+                    <p><span class="line_number">3</span> <?= 'TiendaMIA.com se ocupa de todos los trámites de Aduana. Vos recibís el paquete en tu casa, sin sorpresas.' ?></p>
+                    <p><span class="line_number">4</span> <?= 'Podés pagar en pesos uruguayos o en dólares, con tarjetas de crédito internacionales o locales y con tarjetas prepagas.' ?></p>
+                    <p><span class="line_number">5</span> <?= 'En TiendaMIA.com podés encontrar más de 1000 Millones de Productos de Amazon, eBay y Walmart.' ?></p>
+                    <p><span class="line_number">6</span> <?= '<a style="display:inline;" href="https://tiendamia.zendesk.com/hc/es/articles/214132543-Informaci%C3%B3n-de-Aduanas">Aquí</a> podés ver los Productos Prohibidos por la Aduana.' ?></p>
+                    <p><span class="line_number">7</span> <?= 'Podés ver el precio final de tu orden agregando los productos al carrito.' ?></p>
+                    <p><span class="line_number">8</span> <?= 'Podés pagar en cuotas sin recargo con <a style="display:inline;" href="https://tiendamia.zendesk.com/hc/es/articles/115002983951-Pagos-en-Cuotas">estas tarjetas</a>.' ?></p>
+                    <p><span class="line_number">9</span> <?= 'A partir del 3er Kilo, TiendaMIA ofrece un 30% de descuento en el costo del envío.' ?></p>
+                    <p><span class="line_number last">10</span> <?= 'Si realizás 3 compras en TiendaMIA.com, te llevás un kilo gratis para tu 4ta compra.' ?></p>
+                <?php } else { ?>
+                    <p><span class="line_number">1</span> <?= $this->__('Busca los productos que quieras a través del buscador') ?></p>
+                    <p><span class="line_number">2</span> <?= $this->__('O a través de las categorias') ?></p>
+                    <p><span class="line_number">3</span> <?= $this->__('Agrega todos los productos que desees a tu carrito.') ?></p>
+                    <p><span class="line_number">4</span> <?= $this->__('Dirígete al carrito para concretar la compra.') ?></p>
+                    <p><span class="line_number">5</span> <?= $this->__('En el carrito da clic en Finalizar compra para abonar tu orden.') ?></p>
+                    <p><span class="line_number">6</span> <?= $this->__('Si ya estás registrado, ingresa a tu cuenta para finalizar la compra.') ?></p>
+                    <p><span class="line_number">7</span> <?= $this->__('Si no tienes una cuenta puedes hacerla en pocos pasos.') ?></p>
+                    <p><span class="line_number">8</span> <?= $this->__('Escoge el método de envío que más te convenga.') ?></p>
+                    <p><span class="line_number">9</span> <?= $this->__('Ingresa el método de pago con el que abonarás.') ?></p>
+                    <p><span class="line_number last">10</span> <?= $this->__('Cuando hayas completado los campos da clic en Continuar para efectuar el pago.') ?></p>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp5" id="tracking_de_ordenes" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+  <div class="modal-body">
+    <div class="content-login_header">
+      <div class="login_header_title">
+        <h2><?php // echo $this->__('Tracking de Ordenes'); ?></h2>
+      </div>
+    </div>
+      <div class="preguntas_frecuentes_body">
+        <?php // echo $this->getLayout()->createBlock('cms/block')->setBlockId('tracking-orden')->toHtml(); ?>
+    </div>
+  </div>
+</div>
+-->
+
+<?php if(strpos($current_url, "registro") === false){ ?>
+
+    <div id="registration-home-popup3" class="modal hide showing-1 modal-size-sp8 fade-in in new-subscribe-popup notranslate" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-body">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('subscribe-popup-new')->toHtml(); ?>
+        </div>
+    </div>
+
+<?php } ?>
+<?php
+/*$current_url = Mage::helper('core/url')->getCurrentUrl();
+if (strpos($current_url,'checkout/onepage') == false && strpos($current_url,'customer') == false && strpos($current_url,'sales') == false && strpos($current_url,'awraf') == false) {
+?>
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8" id="copiar_link" style="display: none;">
+<button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+<div class="modal-body">
+<div class="content-login_header">
+  <div class="login_header_title">
+    <h2><?php echo $this->__('¿Como Copiar un Link?'); ?></h2>
+  </div>
+</div>
+  <div class="preguntas_frecuentes_body">
+
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('copiar_link')->toHtml(); ?>
+
+</div>
+</div>
+</div>
+-->
+<?php
+}*/
+?>
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8" id="terminos_cotizador" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+  <div class="modal-body">
+    <div class="content-login_header">
+      <div class="login_header_title">
+        <h2><?php // echo $this->__('Términos y Condiciones'); ?></h2>
+      </div>
+    </div>
+      <div class="preguntas_frecuentes_body">
+
+      <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('terminos_cotizador')->toHtml(); ?>
+            <div class="clear"></div>
+      <input type="button" onclick="cotizador_addtocart()" class="cotizador-button" name="cotizador-button" value="Acepto Términos y Condiciones">
+
+    </div>
+  </div>
+</div>
+-->
+
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8" id="que_es_prex" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+  <div class="modal-body">
+      <div class="preguntas_frecuentes_body">
+
+      <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('que_es_prex')->toHtml(); ?>
+      <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('solicitar_prex')->toHtml(); ?>
+            <div class="clear"></div>
+
+    </div>
+  </div>
+</div>
+-->
+
+<!--
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8" id="pedidos_especiales" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+  <div class="modal-body">
+    <div class="content-login_header">
+      <div class="login_header_title">
+        <h2><?php // echo $this->__('Pedidos Especiales'); ?></h2>
+      </div>
+    </div>
+      <div class="preguntas_frecuentes_body">
+
+      <?php // echo $this->getLayout()->createBlock('cms/block')->setBlockId('pedidos_especiales')->toHtml(); ?>
+
+    </div>
+  </div>
+</div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp5 notranslate" id="login_header" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+    <div class="modal-body">
+        <div class="content-login_header">
+            <div class="login_header_title">
+                <!-- <span class="siteseal" id="siteseal"><script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=4UQN2VXfavZQLXA0SccYhNGKEWL3bIE5AI6G31hIaWh3oEklffo5Da"></script></span> -->
+                <h3><?php echo $this->__('INGRESAR A MI CUENTA'); ?></h3>
+                <p><?php echo $this->__('Si ya est&aacute;s registrado, por favor ingresa.'); ?></p>
+            </div>
+            <div class="login_header_right">
+                <form id="login-form" method="post" action="<?php echo $this->getUrl('' , array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>customer/account/loginPost/">
+                    <p><?php echo $this->__('Ingresa con tu usuario de TiendaMIA'); ?></p>
+                    <ul class="form-list">
+                        <li>
+                            <label class="required" for="email"><?php echo $this->__('E-mail'); ?>:</label>
+                            <div class="input-box">
+                                <input type="email" title="E-mail" class="input-text required-entry validate-email" id="email" value="" name="login[username]">
+                            </div>
+                        </li>
+                        <li>
+                            <label class="required" for="pass"><?php echo $this->__('Contraseña'); ?>:</label>
+                            <div class="input-box">
+                                <input type="password" title="Contraseña" id="pass" class="input-text required-entry validate-password" name="login[password]">
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="error_msg"><?php echo $this->__('E-mail o Contrase&ntilde;a incorrectos'); ?></p>
+                    <div class="buttons-set">
+                        <button id="send2" name="send" title="Ingresar" class="button" type="button" onclick="postlogin()"><span><span><?php echo $this->__('Entrar') ?></span></span></button>
+                        <span class="cargando_login" style="display:none;"><img src="/skin/frontend/traigo/traigo/images/cargando_new.gif" alt="cargando"></span>
+                    </div>
+                </form>
+                <p class="login_header_recuperar"><a href="/customer/account/forgotpassword/"><?php echo $this->__('&iquest;Olvidaste tu Contrase&ntilde;a?') ?> <span><?php echo $this->__('Recup&eacute;rala aqu&iacute;') ?></span></a></p>
+                <p class="login_header_chatea"><a href="https://tiendamia.zendesk.com/hc/es" target="_blank"><?php echo $this->__('¿Necesitas Ayuda?') ?> <span><?php echo $this->__('Preguntas Frecuentes') ?></span></a></p>
+            </div>
+        </div>
+        <div class="footer-login_header"> <span class="nuevo_register"><span><?php echo $this->__('¿Nuevo por aqu&iacute;?') ?></span> <a href="#" onclick="clickregister()"><?php echo $this->__('Reg&iacute;strate AHORA') ?></a></span>  </div>
+    </div>
+</div>
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="transaccion_error" style="display: none;">
+    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+    <div class="modal-body">
+        <div class="content-login_header">
+            <div class="login_header_title">
+                <h3>Error en la transacción</h3>
+            </div>
+        </div>
+        <div class="clear20px"></div>
+        <div class="transaccion_msg">
+        </div>
+        <div class="clear20px"></div>
+        <div class="transaccion_button">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">ACEPTAR</button>
+        </div>
+    </div>
+</div>
+
+<div data-backdrop="static" data-keyboard="false" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate" id="aviso_retraso_orden" style="display: none;">
+    <div class="modal-body">
+        <div class="content-lightbox">
+            <div class="content-lightbox_body">
+                <div class="retraso-orden">
+                    <p class="title">Atenci&oacute;n:</p>
+                    <?php
+                    $fecha_actual_uy = date('Y-m-d H:i:s', strtotime($php_time. ' - 3 hours'));
+                    $fecha_15_nov = date('2017-11-15 00:00:00', strtotime('-1 hour'));
+                    $fecha_20_nov = date('2017-11-20 00:00:00', strtotime('-1 hour'));
+                    if ($fecha_actual_uy > $fecha_20_nov) { ?>
+                        <p class="subtitle">Este producto no tiene devoluci&oacute;n y tiene una demora aproximada de 20 a 25 d&iacute;as. Retrasar&aacute; toda tu orden <strong>Y NO LLEGARÁ PARA NAVIDAD</strong>.</p>
+                    <?php } elseif($fecha_actual_uy > $fecha_15_nov){ ?>
+                        <p class="subtitle">Este producto no tiene devoluci&oacute;n y tiene una demora aproximada de 20 a 25 d&iacute;as. Retrasar&aacute; toda tu orden <strong>y puede que no llegue para NAVIDAD</strong>.</p>
+                    <?php } else { ?>
+                        <p class="subtitle">Este producto no tiene devoluci&oacute;n y tiene una demora aproximada de 20 a 25 d&iacute;as. Retrasar&aacute; toda tu orden.</p>
+                    <?php } ?>
+                    <p class="subtitle">Si deseas recibir antes, te sugerimos seleccionar los productos que dicen &quot;EXPRESS&quot;.</p>
+                    <p class="subtitle"><span>&iquest;Est&aacute;s seguro que quieres agregarlo al carrito?</span></p>
+                    <div class="actions">
+                        <button type="button" aria-hidden="true" data-dismiss="modal" title="No Acepto" class="button no-acepto"><span>No</span></button>
+                        <button type="button" title="Acepto" class="button acepto" onclick="AddToCartCustom(json_data_product,'cart')" ><span>Si</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php if (strpos($current_url,'ciberlunes') != false || strpos($current_url,'cyberweek') != false) { ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"  class="modal hide fade modal-size-sp7 in notranslate ciberlunes" id="ciberlunes" style="display: none;">
+        <div class="modal-body">
+            <div class="content-lightbox">
+                <div class="content-lightbox_title">
+                    <?php if (strpos($current_url,'ciberlunes') != false ){ ?>
+                        <img src="https://tiendamia.com/skin/frontend/traigo/traigo/images/ciberlunes/logo-ciberlunes-lightbox-desktop-min.png">
+                    <?php } else { ?>
+                        <img src="https://tiendamia.com/skin/frontend/traigo/traigo/images/cyberweek/logo-cyberweek-lightbox-desktop-min.png">
+                    <?php } ?>
+                </div>
+                <div class="content-lightbox_body">
+                    <div class="fig_caption">
+                        <p>Comienza a las 0:01 del Lunes. Quedate atento,</p>
+                        <p>est&aacute; llegando. Ofertas de no creer.</p>
+                    </div>
+                    <div class="buttons-set">
+                        <button onclick="window.location='https://tiendamia.com'" class="button" aria-hidden="true" data-dismiss="modal" type="button" style="cursor:pointer;">P&aacute;gina principal</button>
+                        <div class="clear"></div>
+                        <a href="https://tiendamia.com">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if (strpos($current_url,'invitar-amigos') != false) { ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp5 notranslate" id="invitegmail" style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <div class="modal-body">
+            <div class="content-login_header">
+                <div class="login_header_title">
+                    <h3>Agrega tus contactos y cierra esta ventana</h3>
+                </div>
+            </div>
+            <div class="preguntas_frecuentes_body">
+                <ul>
+                    <li style="display: none;" class="success-msg" id="success-alert">Agregado correctamente!</li>
+                    <li style="display: none;" class="success-msg" id="success-remove-alert">Fue eliminado correctamente!</li>
+                </ul>
+                <br>
+                <div class="input-box">
+                    <input type="text" placeholder="Puedes filtrar por email" id="filter_gmailemail" class="input-text">
+                </div>
+                <br>
+                <div class="transaccion_button">
+                    <select id="selectgmail" name="selectgmail[]" size="10"></select>
+                    <button id="add_gmailemail" class="button" aria-hidden="true" type="button" >Agregar</button>
+                    <button id="add_todo" class="button" aria-hidden="true" type="button" >Agregar todos</button>
+                    <button id="remove_todo" class="button" aria-hidden="true" type="button" >Eliminar todos</button>
+                    <div class="close_button" data-dismiss="modal">Cerrar</div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+<?php if(!isset($_COOKIE["location"]) && !Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="location_popup" style="display: none;">
+        <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        </div>
+        <div class="modal-body">
+            <div class="content-login_header">
+                <div class="login_header_title">
+                    <h3>Mensaje importante</h3>
+                </div>
+            </div>
+            <div class="preguntas_frecuentes_body">
+                Usted se encuentra en la Tienda de <?= $storeNames ?>. Le recomendamos cambiar de país para optimizar sus envíos.
+                <div class="buttons">
+                    <div data-dismiss='modal' class="location_buttons not_change">Permanecer aqu&iacute;</div>
+                    <div onclick="goToStore()" class="location_buttons change" id="store_location"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+<?php if(strpos($current_url,'checkout/onepage') !== false && $base_store == 'uy'){ ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false" class="modal hide fade modal-size-sp5 notranslate" id="prex_cuotas_popup" style="display: none;">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        <img class="cargando_img" src="/skin/frontend/traigo/traigo/images/cargando_new.gif" alt="cargando">
+        <?php //FIXME: Hay que cambiar la forma en la que se carga el iframe. ?>
+        <iframe id="prex_iframe" style="display: none;" src="#"></iframe>
+        <div style="display: none;" class="no-habilitado">
+            <img src="/skin/frontend/traigo/traigo/images/no-habilitado-compressor.jpg">
+            <h1>¡Lo sentimos!</h1>
+            <p>No te encuentras habilitado para utilizar este servicio.</p>
+            <button id="back_to_checkout_prex" class="button" aria-hidden="true" type="button"><span>Volver</span></button>
+        </div>
+    </div>
+<?php } ?>
+<?php if ($base_store == 'ar' && strpos($current_url,'checkout/cart') !== false) { ?>
+    <div aria-hidden="true" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false" class="modal hide fade modal-size-sp5 notranslate" id="aviso_prod_distinta_categoria" style="display: none;">
+        <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+        </div>
+        <div class="modal-body">
+            <div class="content-login_header">
+                <div class="login_header_title">
+                    <h2>RECUERDE: </h2>
+                </div>
+            </div>
+            <div class="preguntas_frecuentes_body" style="text-align: center;">
+                <p>Según la normativa de Aduana de su país, no es posible comprar más de tres productos de la misma familia, por orden.</p>
+                <a href="https://tiendamia.zendesk.com/hc/es/articles/115001312726-Limitaciones-de-la-Aduana-Argentina" target="_blank">Ver más informacion aquí</a>
+                <div class="clear20px"></div>
+                <button aria-hidden="true" data-dismiss="modal" class="button"><span style="padding: 0 20px;">Aceptar</span></button>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if (strpos($current_url,'checkout/cart') != false) { ?>
+    <?php if ($base_store == 'mx') { ?>
+        <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="marketing_message" style="display: none;">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="content-login_header">
+                    <div class="login_header_title">
+                        <h2>Gracias por visitar TiendaMIA</h2>
+                    </div>
+                </div>
+                <div class="preguntas_frecuentes_body">
+                    Por el momento no estamos recibiendo ordenes nuevas en México
+                </div>
+            </div>
+        </div>
+    <?php } elseif($base_store == 'co') { ?>
+        <div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="marketing_message" style="display: none;">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="content-login_header">
+                    <div class="login_header_title">
+                        <h2>Gracias por visitar TiendaMIA</h2>
+                    </div>
+                </div>
+                <div class="preguntas_frecuentes_body">
+                    Por el momento no estamos recibiendo ordenes nuevas en Colombia
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+<?php } ?>
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp8 notranslate" id="custom_alerts" style="display: none;">
+    <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>
+    </div>
+    <div class="modal-body">
+        <div class="content-login_header">
+            <div class="login_header_title">
+                <h3>Mensaje importante</h3>
+            </div>
+        </div>
+        <div class="preguntas_frecuentes_body">
+        </div>
+    </div>
+</div>
+<!--<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate lightbox_navidad" id="lightbox_navidad" style="display: none;">
+  <div class="modal-body">
+    <div class="content-lightbox">
+      <a href="#" data-dismiss="modal" style="position:absolute;top:15px;right:15px;color:#666;text-decoration:underline;">Cerrar</a>
+      <div class="content-lightbox_title">
+        <img src="/newsletter/materiales/uruguay/navidad-popup-cybermonday-2.jpg">
+        <p>Busca los productos <img src="/newsletter/materiales/uruguay/cohete.png"> c&oacute;mpralos hasta el Jueves 8 de Diciembre y te los enviamos de 5 a 10 d&iacute;as h&aacute;biles.</p>
+        <p>SIN COSTO EXTRA por el ENV&Iacute;O m&aacute;s r&aacute;pido. Te ahorras USD 5 de Env&iacute;o Express.</p>
+      </div>
+      <div class="content-lightbox_body">
+        <div class="fig_caption">
+            <p>Promoci&oacute;n v&aacute;lida solo hasta el Jueves 8 de Diciembre de 2016. Es un servicio especial que brindamos para que tengas los productos Express antes de Navidad.</p>
+        </div>
+        <div class="buttons-set">
+            <button class="button_lightbox" aria-hidden="true" data-dismiss="modal" type="button" style="cursor:pointer;">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate lightbox-landing" id="lightbox_ciberlunes" style="display: none;">
+  <div class="modal-body">
+    <div class="content-lightbox">
+      <div class="content-lightbox_title">
+        <p>La promoci&oacute;n del CiberLunes ha finalizado.</p>
+        <p>Te invitamos a que conozcas las promociones del</p>
+      </div>
+      <div class="content-lightbox_body">
+        <div>
+            <img src="/skin/frontend/traigo/traigo/images/blackfriday_2015/pre_blackfriday.png">
+        </div>
+        <div class="fig_caption">
+            <p>¡Descuentos de hasta 70% OFF en más de 500 artículos!</p>
+        </div>
+        <div class="buttons-set">
+            <div class="btn_home">
+                <span><a href="<?php //echo $this->getUrl('') ?>uy" class="button_lightbox">CONTINUAR DESDE LA HOMEPAGE</a></span>
+            </div>
+            <div class="btn_BlackFriday">
+                <span><a href="<?php // echo $this->getUrl('') ?>pre-blackfriday" class="button_lightbox">VER OFERTAS PRE BLACK FRIDAY</a></span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate lightbox-landing" id="lightbox_ciberlunes_2016" style="display: none;">
+  <div class="modal-body">
+    <div class="content-lightbox">
+      <div class="content-lightbox_body">
+        <img src="/skin/frontend/traigo/traigo/images/ciberlunes/ciberlunes-logo.png">
+        <p>Esta promoci&oacute;n ha finalizado.</p>
+        <p>Te invitamos a que veas nuevas ofertas</p>
+        <div class="buttons-set">
+            <div class="btn_home">
+                <span><a href="<?php // echo $this->getUrl('') ?>uy" class="button_lightbox">Continuar</a></span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+
+
+<!--<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate lightbox-landing" id="lightbox_blackfriday" style="display: none;">
+  <div class="modal-body">
+    <div class="content-lightbox">
+      <div class="content-lightbox_title">
+        <p>La promoci&oacute;n del Black Friday ha finalizado.</p>
+        <p>Te invitamos a que conozcas las promociones del</p>
+      </div>
+      <div class="content-lightbox_body">
+        <div>
+            <img src="/skin/frontend/traigo/traigo/images/cybermonday_2015/cybermonday_lightbox.png">
+        </div>
+        <div class="fig_caption">
+            <p>¡Descuentos de hasta 70% OFF en más de 500 artículos!</p>
+        </div>
+        <div class="buttons-set">
+            <div class="btn_home">
+                <span><a href="<?php // echo $this->getUrl('') ?>" class="button_lightbox">CONTINUAR DESDE LA HOMEPAGE</a></span>
+            </div>
+            <div class="btn_BlackFriday">
+                <span><a href="<?php // echo $this->getUrl('') ?>cybermonday" class="button_lightbox">VER OFERTAS DEL CYBER MONDAY</a></span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate lightbox-landing" id="lightbox_cybermonday" style="display: none;">
+  <div class="modal-body">
+    <div class="content-lightbox">
+      <div class="content-lightbox_title">
+        <p>La promoción de CYBERMONDAY ha finalizado.</p>
+        <p>Adelántate a esta Navidad y recibe tus regalos a tiempo con nuestra</p>
+      </div>
+      <div class="content-lightbox_body">
+        <div>
+            <img src="/newsletter/materiales/uruguay/navidad-popup-cybermonday-2.jpg">
+        </div>
+        <div class="fig_caption">
+            <p>¡Ahorra más de 70% en regalos exclusivos de USA!</p>
+        </div>
+        <div class="buttons-set">
+            <div class="btn_home">
+                <span><a href="<?php // echo $this->getUrl('') ?>" class="button_lightbox">CONTINUAR DESDE LA HOMEPAGE</a></span>
+            </div>
+            <div class="btn_BlackFriday hidden">
+                <span><a href="<?php //echo $this->getUrl('') ?>lista-deseos" class="button_lightbox">VER OFERTAS DE LISTA DE DESEOS</a></span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate lightbox-landing" id="lightbox_pre_blackfriday" style="display: none;">
+  <div class="modal-body">
+    <div class="content-lightbox">
+      <div class="content-lightbox_title">
+        <p>Prep&aacute;rate para el exclusivo Pre Black Friday. &iexcl;Ya falta poco!</p>
+        <p>Apenas sean las 0:01 del viernes, podr&aacute;s disfrutar de estas ofertas.</p>
+      </div>
+      <div class="content-lightbox_body">
+        <div class="buttons-set">
+            <div class="btn_home">
+                <span><a href="<?php // echo $this->getUrl('') ?>uy" class="button_lightbox">CONTINUAR DESDE LA HOMEPAGE</a></span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+
+
+
+<div aria-hidden="true" role="dialog" tabindex="-1" class="modal hide fade modal-size-sp7 in notranslate" id="latampass" style="display: none;">
+    <div class="modal-body">
+        <div class="content-lightbox">
+            <div class="content-lightbox_body">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('latampass')->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function lightbox_navidad() {
+        $j('#lightbox_navidad').modal({ backdrop: true, keyboard: false });
+    }
+
+
+
+    function toogle_desc(id_spmethod) {
+        $j('.shipping_description_checkout').hide();
+        $j('#s_method_'+id_spmethod).attr('checked','checked');
+        $j('#s_desc_'+id_spmethod).slideToggle('fast');
+    }
+
+    function postlogin(obj) {
+        var urlactual = '<?php echo Mage::helper('core/url')->getCurrentUrl() ?>';
+        var ajaxRegistration = jQuery.ajax({
+            url: '<?php echo $this->getUrl('youama_ajaxlogin/ajax/index' , array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>',
+            type: 'POST',
+            data: {
+                ajax : 'login',
+                email : $j('#login_header #email').val(),
+                password : $j('#login_header #pass').val()
+            },
+            dataType: "html"
+        });
+        $j('#login_header .cargando_login').show();
+        $j('#login_header #send2').hide();
+        ajaxRegistration.done(function(msg) {
+            if (msg != 'success'){
+                $j('#login_header p.error_msg').fadeIn('slow');
+                $j('#login_header .form-list input').addClass('error_msg_input');
+                $j('#login_header .cargando_login').hide();
+                $j('#login_header #send2').show();
+            }
+            else{
+                //_gaq.push(['_trackEvent', 'Login usuario Header', 'Click']);
+                try{
+                    ga('send', 'event', 'Login usuario Header', 'Click'); // Universal Analytics
+                }catch (ee){
+
+                }
+                window.location.replace(urlactual);
+
+            }
+        });
+        ajaxRegistration.fail(function(jqXHR, textStatus, errorThrown) {
+            window.location.replace(urlactual);
+        });
+    }
+
+
+    $j('#youtube_home').on('show', function () {
+        $j('#youtube_home div.modal-body').html('<iframe src="//www.youtube.com/embed/RaxgqV0AsZc?rel=0&hl=es_ES&amp;version=3&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>');
+        //_gaq.push(['_trackEvent', 'Ver Video', 'Open']);
+        try{
+            ga('send', 'event', 'Ver Video', 'Open'); // Universal Analytics
+        }catch (ee){
+
+        }
+    });
+    $j('#youtube_home').on('hide', function () {
+        $j('#youtube_home div.modal-body').html('');
+    });
+
+
+
+    $j('#form_aduanas').on('show', function () {
+        $j('#form_aduanas div.modal-body').html('<iframe class="video-TiendaMia" width="720" height="400" src="https://servicios.aduanas.gub.uy/LuciapubX/hwcantencpostales.aspx" frameborder="0" scrolling="no">');
+    });
+    $j('#form_aduanas').on('hide', function () {
+        $j('#form_aduanas div.modal-body').html('');
+    });
+
+    function showLogin(){
+        $j('#login_header').modal('toggle');
+        clearTimeoutPopup();
+    }
+
+    function AddWishlistGrid(sku){
+        $j(".favorite#id_"+sku).hide();
+        $j(".cargando-favorite#id_"+sku).show();
+        var AddWishlistGrid = jQuery.ajax({
+            url: '<?php echo $this->getUrl('tiendamiac_ajaxapi/ajax/index' , array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>',
+            type: 'POST',
+            data: {
+                ajax : 'addwishlist',
+                sku : sku,
+                store : 'AMZ',
+            },
+            dataType: "html"
+        });
+
+        AddWishlistGrid.done(function(msg) {
+            if (msg == 'success'){
+                $j(".favorite#id_"+sku).addClass("active");
+                $j(".favorite#id_"+sku).show();
+                $j(".cargando-favorite#id_"+sku).hide();
+            }
+            else if (msg == 'removed'){
+                $j(".favorite#id_"+sku).removeClass("active");
+                $j(".favorite#id_"+sku).show();
+                $j(".cargando-favorite#id_"+sku).hide();
+            }
+        });
+
+        AddWishlistGrid.fail(function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR)
+            alert(textStatus)
+            alert(errorThrown)
+        });
+        // var timeOut = setTimeout(function(){
+        //   if ($j(".favorite#id_"+sku).hasClass("active")){
+        //     $j(".favorite#id_"+sku).removeClass("active");
+        //   } else {
+        //     $j(".favorite#id_"+sku).addClass("active");
+        //   }
+        //   $j(".favorite#id_"+sku).show();
+        //   $j(".cargando-favorite#id_"+sku).hide();
+        // }, 1000);
+    }
+
+
+    function setPassword(user_email){
+        var setPassword = jQuery.ajax({
+            url: '<?php echo $this->getUrl('tiendamiac_ajaxapi/ajax/index' , array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>',
+            type: 'POST',
+            data: {
+                ajax : 'passwords',
+                customer_email:user_email,
+            },
+            dataType: "html"
+        });
+
+        setPassword.done(function(msg) {
+            if (msg){
+                alert(msg)
+            }
+        })
+
+        setPassword.fail(function(jqXHR, textStatus, errorThrown) {
+        });
+
+    }
+
+    function validarregistro_ajax() {
+        var email_address_register = $j('#register_header input#email_address').val();
+        var email_address_confirm = $j('#register_header input#email_address_confirm').val();
+        var password_register = $j('#register_header input#password').val();
+        var gender_register = $j('#register_header #gender option:selected').val();
+        var confirmation_register = $j('#register_header input#confirmation').val();
+        var emailRegex = new RegExp(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i);
+        var validemail = emailRegex.test(email_address_register);
+        $j('#register_header input').each(function(){
+            var valueinput = $j(this).val();
+            if (valueinput == ''){
+                $j(this).addClass('error_msg_input');
+                $j(this).parent().next().next().fadeIn('slow');
+            }
+        });
+        var avanza = true;
+
+        if (gender_register == ''){
+            $j('#register_header select#gender').addClass('error_msg_input');
+            avanza = false;
+        }
+        if (!validemail || email_address_register =='' ){
+            $j('#register_header p.error_msg#email_address').hide();
+            $j('#register_header input#email_address').addClass('error_msg_input');
+            $j('#register_header p.error_msg#email_address_incorrecto').fadeIn('slow');
+            avanza = false;
+        }
+        if (email_address_register !== email_address_confirm){
+            $j('#register_header input#email_address').addClass('error_msg_input');
+            $j('#register_header input#email_address_confirm').addClass('error_msg_input');
+            $j('#register_header p.error_msg#email_address_nocoincide').fadeIn('slow');
+            avanza = false;
+        }
+        if (password_register.length < 6){
+            $j('#register_header input#password').addClass('error_msg_input');
+            $j('#register_header input#password').parent().next().next().fadeIn('slow');
+            avanza = false;
+        }
+        if (password_register !== confirmation_register){
+            $j('#register_header input#confirmation').addClass('error_msg_input');
+            $j('#register_header input#confirmation').parent().next().next().next().fadeIn('slow');
+            avanza = false;
+        }
+        if(avanza==true){
+            var registernews = 'yes';
+            if ($j('#is_subscribed').is(':checked')) {
+                registernews = 'yes';
+            } else {
+                registernews = 'no';
+            }
+
+            var urlactual = '<?php echo  $this->getUrl(); ?>';
+            var validarregistro_checkout_ajax = jQuery.ajax({
+                url: '<?php echo $this->getUrl('youama_ajaxlogin/ajax/index' , array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>',
+                type: 'POST',
+                data: {
+                    ajax : 'register',
+                    licence : 'ok',
+                    email : $j('#register_header input#email_address').val(),
+                    firstname : $j('#register_header input#firstname').val(),
+                    lastname : $j('#register_header input#lastname').val(),
+                    newsletter : registernews,
+                    gender : $j('#register_header #gender option:selected').val(),
+                    password : $j('#register_header input#password').val(),
+                    passwordsecond : $j('#register_header input#confirmation').val()
+                },
+                dataType: "html"
+            });
+            $j('#register_header .cargando_login').show();
+            $j('#register_header #send3').hide();
+            validarregistro_checkout_ajax.done(function(msg) {
+                if (msg == 'success'){
+                    //_gaq.push(['_trackEvent', 'Registro Usuario Header', 'Click']);
+                    try{
+                        ga('send', 'event', 'Registro Usuario Header', 'Click'); // Universal Analytics
+                    }catch (ee){
+
+                    }
+                    window.location = urlactual;
+                }
+                else if (msg == 'emailisexist,') {
+                    alert('Este email ya esta registrado en TiendaMIA');
+                    $j('#register_header .cargando_login').hide();
+                    $j('#register_header #send3').show();
+                } else {
+                    var splitmsg = new Array();
+                    splitmsg = msg.split(',');
+
+                    for (error in splitmsg) {
+                        $j('.error_msg.'+splitmsg[error]).show()
+                    }
+                    $j('#register_header .cargando_login').hide();
+                    $j('#register_header #send3').show();
+                }
+            });
+            validarregistro_checkout_ajax.fail(function(jqXHR, textStatus, errorThrown) {
+                //alert('Error!')
+                window.location = urlactual;
+            });
+        }
+    }
+    $j("#register_header input#firstname").on('input', function(){
+        if ($j(this).val().length > 0) {
+            $j(this).addClass('valid');
+        } else {
+            $j(this).removeClass('valid');
+        }
+    });
+    $j("#register_header input#lastname").on('input', function(){
+        if ($j(this).val().length > 0) {
+            $j(this).addClass('valid');
+        } else {
+            $j(this).removeClass('valid');
+        }
+    });
+    $j("#register_header input#email_address").on('input', function(){
+        var email = $j('#register_header input#email_address').val();
+        var emailRegex = new RegExp(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i);
+        var validemail = emailRegex.test(email);
+        var emailConfirm = $j('#register_header input#email_address_confirm');
+        if (!validemail) {
+            $j(this).removeClass('valid');
+            emailConfirm.removeClass('valid');
+        } else {
+            $j(this).addClass('valid');
+            if(email == emailConfirm.val()){
+                emailConfirm.addClass('valid');
+                $j('#email_address_nocoincide').hide();
+                $j("#register_header input#email_address_confirm").removeClass('error_msg_input');
+            }else{
+                emailConfirm.removeClass('valid');
+            }
+        }
+    });
+    $j("#register_header input#email_address_confirm").on('input', function(){
+        var email = $j('#register_header input#email_address').val();
+        var emailRegex = new RegExp(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i);
+        var emailConfirm = $j(this).val();
+        if (email == emailConfirm && emailRegex.test(email)) {
+            $j(this).addClass('valid');
+            $j('#email_address_nocoincide').hide();
+            $j("#register_header input#email_address").removeClass('error_msg_input');
+        } else {
+            $j(this).removeClass('valid');
+        }
+    });
+    $j('#register_header input#password').on('input', function(){
+        var pass = $j(this).val();
+        var confirmacion = $j('#register_header input#confirmation');
+        if (pass.length > 5 && pass.length < 17) {
+            $j(this).addClass('valid');
+            if(pass == confirmacion.val()){
+                confirmacion.addClass('valid');
+                confirmacion.removeClass('error_msg_input');
+                confirmacion.parent().siblings('p').hide();
+            }
+        } else {
+            $j(this).removeClass('valid');
+            confirmacion.removeClass('valid');
+        }
+    });
+    $j('#register_header input#confirmation').on('input', function(){
+        var pass = $j('#register_header input#password').val();
+        var passConfirm = $j('#register_header input#confirmation').val();
+        if (pass == passConfirm && pass.length > 5 && pass.length < 17) {
+            $j(this).addClass('valid');
+        } else {
+            $j(this).removeClass('valid');
+        }
+    });
+
+    <?php
+    if (strpos($current_url,'checkout/onepage') == false) {
+    if(Mage::getStoreConfig('general/tiendamiapromos/enabled_paypal') == 'xxx'){ ?>
+    $j(function(){setTimeout(function (){
+        if (document.cookie.indexOf('close_banner') < 1) {
+            $j('.banner-promo-paypal').show();
+            $j('.banner-promo-paypal').addClass('show');
+        }
+    }, 5000);});
+    function closeBannerPaypal (){
+        $j('.banner-promo-paypal').removeClass('show');
+        var cookie_banner = 'close_banner';
+        var myDate = new Date();
+        myDate.setTime(myDate.getTime() + (24*60*60*1000));
+        document.cookie = "close_banner; expires=" + myDate+"; path=/";
+    }
+    <?php } } ?>
+    function showEnvioExpress(){
+        $j('#opc-shipping_method .envio_normal').hide();
+        $j('#opc-shipping_method .envio_express').show();
+        $j('#opc-shipping_method .envio_normal').removeClass('active');
+        $j('#opc-shipping_method .envio_express').addClass('active');
+        $j('#opc-shipping_method .boton_envio_express').addClass('active');
+        $j('#opc-shipping_method .boton_envio_normal').removeClass('active');
+    }
+    function showEnvioNormal(){
+        $j('#opc-shipping_method .envio_normal').show();
+        $j('#opc-shipping_method .envio_express').hide();
+        $j('#opc-shipping_method .envio_normal').addClass('active');
+        $j('#opc-shipping_method .envio_express').removeClass('active');
+        $j('#opc-shipping_method .boton_envio_normal').addClass('active');
+        $j('#opc-shipping_method .boton_envio_express').removeClass('active');
+    }
+    function showLoadingDiv () {
+        $j('#loading-div').css("visibility", "visible");
+        $j(".progress-color").addClass("progress-color-animate");
+        $j(".progress-color").removeClass("progress-color-restart");
+        $j('body').addClass('noscroll');
+    }
+    function hideLoadingDiv () {
+        $j('#loading-div').css("visibility", "hidden");
+        $j(".progress-color").addClass("progress-color-restart");
+        $j(".progress-color").removeClass("progress-color-animate");
+        $j('#cancel_loading').hide();
+        $j('body').removeClass('noscroll');
+    }
+    function getSliderHomeContent(slider_id,search,limit,cache_refresh,newsletter,store){
+        store = store || '';
+        var insertSliderHomeContent = jQuery.ajax({
+            url: '<?php echo $this->getUrl('ajaxapi/ajax/getsearchechoslider2' , array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>',
+            type: 'GET',
+            data: {
+                slider_id: slider_id,
+                search: search,
+                limit: limit,
+                cache_refresh: cache_refresh,
+                newsletter: newsletter,
+                store: store
+            },
+            dataType: "html"
+        });
+        insertSliderHomeContent.done(function(msg) {
+
+            if (msg){
+                var json_data_home = $j.parseJSON(msg);
+                if(json_data_home['item']){
+                    $j(this).cargarEchoSlider2JS(json_data_home);
+                }else{
+                    $j('#slider1').parent().hide();
+                }
+            }
+        });
+        insertSliderHomeContent.fail(function(jqXHR, textStatus, errorThrown) {
+            //alert("Fail ajax");
+        });
+    }
+</script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/slick.min.js') ?>"></script>
+
+<div class="contacto_popup hidden"><a href="https://tiendamia.zendesk.com/hc/es" target="_blank"><?php echo $this->__('Centro de Ayuda') ?></a> </div>
+
+<!-- <div class="contacto_popup hidden"><a href="#preguntas_frecuentes" data-toggle="modal">Preguntas Frec. / Contacto</a> </div> --><?php
+if (isset($_COOKIE["headway"])){
+
+    echo '<script language="JavaScript1.1" src="//pixel.mathtag.com/event/js?mt_id=1056635&mt_adid=170663&v1=&v2=&v3=&s1=&s2=&s3="></script>';
+
+}
+
+?>
+<script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'daf5271c5e228d814cdf12bd3','dc':'us3'}};
+    (function($){
+        $(window).load(function(){
+            var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+            sp.src = '/js/ebizmarts/mailchimp/goal.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+        });
+    })(jQuery);
+</script>
+<script type="text/javascript">
+    function removeAjaxProduct(url, object){
+//            var conf = confirm('Esta seguro que desea eliminar el producto');
+//            if(!conf){
+//                return;
+//            }
+        object.parentElement.parentElement.style.minHeight = '0px';
+        object.parentElement.parentElement.style.padding = '0px';
+        object.parentElement.parentElement.style.maxHeight = '0px';
+        object.parentElement.parentElement.style.border = '0px';
+        jQuery.ajax({
+            url: url,
+            type: 'GET'
+        }).done(function (data) {
+            var isOver = false;
+            if($j('.block-cart-header:hover').length > 0){ isOver = true; }
+            $j('.block-cart-header .cart-content').mouseout();
+            $j('.block-cart-header').replaceWith(data['content']);
+            if(isOver){
+                $j('.cart-content').addClass('hover');
+                setTimeout(function()
+                {
+                    $j('.cart-content').removeClass('hover');
+                }, 20);
+            }
+            <?php if (strpos($current_url,'checkout/cart') !== false){ ?>
+            location.reload();
+            <?php } ?>
+        }).fail(function () {
+            alert("Se ha producido un error al eliminar el producto.");
+        })
+    }
+
+    function addAjaxProduct(sku){
+        jQuery.ajax({
+            url: '<?php echo $this->getUrl('tiendamiac_ajaxapi/ajax/index' , array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>',
+            type: 'POST',
+            data: {
+                ajax : 'addtocartcustom',
+                productsku : sku,
+                site : 'amz',
+                url : window.location.href
+            },
+            dataType: "html"
+        }).done(function (data) {
+            if(data['url'] == undefined) {
+                <?php if (strpos($current_url, 'checkout/cart') !== false){ ?>
+                location.reload();
+                <?php } ?>
+                addToMiniCartNew(data);
+            }else{
+                window.location.replace(data['url']);
+            }
+        }).fail(function () {
+            alert("Se ha producido un error al agregar el producto.");
+        })
+    }
+
+    function addToMiniCartNew(msg){
+        $j('.block-cart-header').replaceWith(msg['content']);
+        $j('.cart-content').addClass('hover');
+        $j('.cart-content').prepend('<div class="success-cart-message">Producto agregado correctamente</div>');
+        setTimeout(function()
+        {
+            $j('.cart-content').removeClass('hover');
+            $j('.success-cart-message').remove();
+        }, 3000);
+    }
+</script>
+
+<?php if (strpos($current_url,'checkout/onepage') == false && (strpos($current_url,'customer/account') == false)) { ?>
+    <script type="text/javascript">
+        var page = 0;
+        var margin = 0;
+        var cantno = 0;
+        $j(window).load(function () {
+            <?php if ($base_store == 'br') { ?>
+            var images = [
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/001-min.jpg', 'alt' : 'Usa el buscador'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/002-min.jpg', 'alt' : 'O recorre categorias'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/003-min.jpg', 'alt' : 'Agrega al carrito'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/004-min.jpg', 'alt' : 'Ingresa al carrito'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/005-min.jpg', 'alt' : 'Finaliza tu compra'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/005-2-min.jpg', 'alt' : 'Finaliza tu compra'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/006-min.jpg', 'alt' : 'Ingresa si tienes cuetna'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/007-min.jpg', 'alt' : 'O Registrate'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/008-min.jpg', 'alt' : 'Elije método de envio'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/br/009-minv2.jpg', 'alt' : 'Elije método de pago'},
+            ];
+            <?php } else { ?>
+            var images = [
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/001.jpg', 'alt' : 'Usa el buscador'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/002.jpg', 'alt' : 'O recorre categorias'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/003.jpg', 'alt' : 'Agrega al carrito'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/004.jpg', 'alt' : 'Ingresa al carrito'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/005.jpg', 'alt' : 'Finaliza tu compra'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/006.jpg', 'alt' : 'Ingresa si tienes cuetna'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/007.jpg', 'alt' : 'O Registrate'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/008.jpg', 'alt' : 'Elije método de envio'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/009.jpg', 'alt' : 'Elije método de pago'},
+                {'img' : 'https://tiendamia.com/skin/frontend/traigo/traigo/images/help-center/comprar/010.jpg', 'alt' : 'Clickea continuar'}
+            ];
+            <?php } ?>
+            var img = $j('#slider_como_comprar ul');
+            $j.each(images, function () {
+                img.append('<li class="item"><a target="_blank" href="'+ images[page]['img'] +'" ><img width="605" alt="'+ images[page]['alt'] +'" title="'+ images[page]['alt'] +'" src="'+ images[page]['img'] +'"></a></li>');
+                page++;
+            });
+            page = 0;
+            $j('#como_comprar .slider-prev').hide();
+        });
+        $j('#como_comprar .slider-prev').on('click', function () {
+            margin+=700;
+            $j('#como_comprar ul').css('margin-left', margin);
+            if(margin==0) {
+                $j(this).hide();
+            }
+        });
+        $j('#como_comprar .slider-next').on('click', function () {
+            if(margin== -6300){
+                margin=0;
+                $j('#como_comprar ul').css('margin-left', margin);
+                $j('#como_comprar .slider-prev').hide();
+            }else{
+                $j('#como_comprar .slider-prev').show();
+                margin-=700;
+                $j('#como_comprar ul').css('margin-left', margin);
+            }
+        });
+    </script>
+<?php } ?>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-messaging.js"></script>
+<script>
+    var fbtknsnt = <?php echo Mage::getSingleton('customer/session')->isLoggedIn() ? '2;' : '1;' ?>
+
+        function sendToken(token) {
+            if (getCookie('fbtknsnt') < fbtknsnt) {
+                $j.post('<?php echo Mage::getUrl(''); ?>firebase/token/add', {
+                    'token': token,
+                    'device': 'dsk',
+                    'country': '<?php echo Mage::app()->getStore()->getCode(); ?>'
+                }, function () {
+                    document.cookie = 'fbtknsnt=' + fbtknsnt;
+                });
+            }
+        }
+
+    function refreshToken(token) {
+        $j.post('<?php echo Mage::getUrl(''); ?>firebase/token/refresh', {
+            'token': token,
+            'device': 'dsk',
+            'country': '<?php echo Mage::app()->getStore()->getCode(); ?>'
+        });
+    }
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyACgGb0dmWAxC9OO5ZcfpiYTRykzATknvk",
+        authDomain: "app-tiendamia.firebaseapp.com",
+        databaseURL: "https://app-tiendamia.firebaseio.com",
+        projectId: "app-tiendamia",
+        storageBucket: "app-tiendamia.appspot.com",
+        messagingSenderId: "575783686381"
+    };
+    firebase.initializeApp(config);
+
+    const messaging = firebase.messaging();
+    messaging.usePublicVapidKey("BLVMqP2wAizcMWHD1apMnqcmdCzCXao4wK4VPRlNtM2mW2oPczf-p7YQN-4s7Xs4xTV2hDtOj77-_yRAEBzVDlo");
+
+    messaging.requestPermission().then(function () {
+        messaging.getToken().then(function (currentToken) {
+            if (currentToken) {
+                console.log(currentToken);
+                sendToken(currentToken);
+            } else {
+                console.log('No hay token');
+            }
+        }).catch(function (err) {
+            console.log('An error occurred while retrieving token. ', err);
+        });
+    }).catch(function (err) {
+        console.log('Unable to get permission to notify.', err);
+    });
+
+    messaging.onMessage(function (payload) {
+        console.log('Message received. ', payload);
+    });
+
+    messaging.onTokenRefresh(function () {
+        messaging.getToken().then(function (refreshedToken) {
+            refreshToken(refreshedToken);
+        }).catch(function (err) {
+            console.log('Unable to retrieve refreshed token ', err);
+        });
+    });
+
+</script>
