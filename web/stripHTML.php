@@ -6,7 +6,26 @@
  * Time: 21:52
  */
 
+/*
     $fichero = file_get_contents($_FILES['fichero_usuario']['name']);
+
+OR
+
+    $dir_subida = '/';
+    $fichero_subido = $dir_subida . basename($_FILES['fichero_usuario']['name']);
+    $fichero = file_get_contents($fichero_subido, true);
+
+BOTH DON'T WORK SINCE WE HAVE READ ONLY FILESYSTEM ON HEROKU
+*/
+
+//    METHOD 3
+    $gestor = fopen($_FILES['fichero_usuario']['name'], "r") or die("Unable to open file!");
+    $fichero = fread($gestor,filesize($_FILES['fichero_usuario']['name']));
+//    fclose($gestor);
+
+//    highlight_string($fichero);
+//    die();
+
     $tokens = token_get_all($fichero);
 
     $echothis = FALSE;
