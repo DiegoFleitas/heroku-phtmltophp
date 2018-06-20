@@ -18,18 +18,36 @@
   <div class="row">
     <div class="col-md-8">
       <!-- El tipo de codificación de datos, enctype, DEBE especificarse como sigue -->
-      <form class="form-inline" enctype="multipart/form-data" action="stripHTML.php" method="POST">
+      <form id="myform" class="form-inline" enctype="multipart/form-data" action="stripHTML.php" method="POST">
         <div class="form-group">
           <label for="exampleFormControlFile1">Enviar este fichero:</label>
           <!-- MAX_FILE_SIZE debe preceder al campo de entrada del fichero -->
           <!--<input type="hidden" name="MAX_FILE_SIZE" value="30000" />-->
-          <!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
-          <input type="file" name="fichero_usuario" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" onchange="openFile()">
+          <input type="hidden" id="text" name="text" value="asd">
         </div>
         <button type="submit" class="btn btn-primary">Enviar fichero</button>
       </form>
     </div>
   </div>
 </div>
+
+  <script>
+      function openFile() {
+          var input = document.getElementById('exampleFormControlFile1');
+
+          var reader = new FileReader();
+          reader.onload = function(){
+              var text = reader.result;
+              console.log(reader.result.substring(0, 200));
+
+              //set hidden form
+              var form = document.getElementById('myform');
+              form.text.value = text;
+
+          };
+          reader.readAsText(input.files[0]);
+      }
+  </script>
 
 {% endblock %}

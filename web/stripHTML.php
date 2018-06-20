@@ -6,22 +6,27 @@
  * Time: 21:52
  */
 
-/*
-    $fichero = file_get_contents($_FILES['fichero_usuario']['name']);
 
+//$fichero = file_get_contents($_FILES['fichero_usuario']['name']);
+$fichero = $_POST["text"];
+
+
+/*
 OR
 
     $dir_subida = '/';
     $fichero_subido = $dir_subida . basename($_FILES['fichero_usuario']['name']);
     $fichero = file_get_contents($fichero_subido, true);
 
-BOTH DON'T WORK SINCE WE HAVE READ ONLY FILESYSTEM ON HEROKU
-*/
+OR
 
-//    METHOD 3
     $gestor = fopen($_FILES['fichero_usuario']['name'], "r") or die("Unable to open file!");
     $fichero = fread($gestor,filesize($_FILES['fichero_usuario']['name']));
 //    fclose($gestor);
+
+BOTH DON'T WORK SINCE WE HAVE READ ONLY FILESYSTEM ON HEROKU
+*/
+
 
 //    highlight_string($fichero);
 //    die();
